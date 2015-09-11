@@ -3,10 +3,12 @@ package com.tts.pattern.factory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 
 public class EmployeeMenue implements IMenu {
 
 	private PersonDAO personDAO = new PersonDAO(); 
+	private JdbcDAO jdbc = new JdbcDAO();
 
 	@Override
 	public void showMenue() {
@@ -20,6 +22,7 @@ public class EmployeeMenue implements IMenu {
 				System.out.println("b - externen Mitarbeiter anlegen");
 				System.out.println("c - Mitarbeiter löschen");
 				System.out.println("d - Mitarbeiter anzeigen");
+				System.out.println("e - Datensatz in DB speichern");
 				System.out.println("q - Programm beenden");
 				
 				String auswahl = input.readLine();
@@ -40,6 +43,9 @@ public class EmployeeMenue implements IMenu {
 						break;
 					case "d":
 						mitarbeiterAnzeigenMenu();
+						break;
+					case "e":
+						jdbc.showDBMenu();
 						break;
 				}
 			}
@@ -124,6 +130,6 @@ public class EmployeeMenue implements IMenu {
 		System.out.println("Personalnummer wird automatisch vergeben");
 		personDAO.addNewPerson(employee);
 	}
-
+	
 
 }
